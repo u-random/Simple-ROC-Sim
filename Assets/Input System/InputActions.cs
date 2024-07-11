@@ -296,12 +296,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Debug_ResetButton = m_Debug.FindAction("ResetButton", throwIfNotFound: true);
     }
 
-    ~@InputActions()
-    {
-        //Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, InputActions.Camera.Disable() has not been called.");
-        //Debug.Assert(!m_Ship.enabled, "This will cause a leak and performance issues, InputActions.Ship.Disable() has not been called.");
-        //Debug.Assert(!m_Debug.enabled, "This will cause a leak and performance issues, InputActions.Debug.Disable() has not been called.");
-    }
 
     public void Dispose()
     {
@@ -479,16 +473,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_ResetButton;
-    public struct DebugActions
+    public struct DebugAction
     {
         private @InputActions m_Wrapper;
-        public DebugActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public DebugAction(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ResetButton => m_Wrapper.m_Debug_ResetButton;
         public InputActionMap Get() { return m_Wrapper.m_Debug; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(DebugAction set) { return set.Get(); }
         public void AddCallbacks(IDebugActions instance)
         {
             if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
@@ -519,7 +513,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             AddCallbacks(instance);
         }
     }
-    public DebugActions @Debug => new DebugActions(this);
+    public DebugAction @Debug => new DebugAction(this);
     private int m_GamepadSchemeIndex = -1;
     public InputControlScheme GamepadScheme
     {
