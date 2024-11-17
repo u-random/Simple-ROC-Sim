@@ -55,7 +55,7 @@ public class PlaneVoxelizedBuoyancy : MonoBehaviour
             print("Beginning to log data");
             Utils.LogDataToFile(localPath,"depth","volume");
         }
-        if(logData) GetComponent<Rigidbody>().velocity = new Vector3(0f, -0.1f, 0f);
+        if(logData) GetComponent<Rigidbody>().linearVelocity = new Vector3(0f, -0.1f, 0f);
     }
 
     

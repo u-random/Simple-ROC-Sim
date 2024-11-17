@@ -27,7 +27,7 @@ public class SimpleDrag : MonoBehaviour
     void ApplyDrag()
     {
         // Translational drag
-        Vector3 velocity = transform.InverseTransformDirection(rb.velocity);
+        Vector3 velocity = transform.InverseTransformDirection(rb.linearVelocity);
         Vector3 dragForce = CalculateDragForce(velocity, linearCoefficients, quadraticCoefficients, cubicCoefficients);
         rb.AddRelativeForce(-dragForce, ForceMode.Force);
 

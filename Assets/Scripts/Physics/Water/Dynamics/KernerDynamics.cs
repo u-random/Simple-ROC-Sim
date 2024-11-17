@@ -57,7 +57,7 @@ public class KernerDynamics : MonoBehaviour
 
         if (viscousResistActive)
         {
-            float Cfr = submerged.GetResistanceCoefficient(rigidBody.velocity.magnitude, hullZMin, hullZMax, submerged.data);
+            float Cfr = submerged.GetResistanceCoefficient(rigidBody.linearVelocity.magnitude, hullZMin, hullZMax, submerged.data);
             ApplyViscousResistance(Cfr);
         }
         if (pressureDragActive) 
@@ -75,7 +75,7 @@ public class KernerDynamics : MonoBehaviour
 
     private void ApplyViscousResistance(float Cfr, float density = Constants.waterDensity)
     {
-        Vector3 vG = rigidBody.velocity;
+        Vector3 vG = rigidBody.linearVelocity;
         Vector3 omegaG = rigidBody.angularVelocity;
         Vector3 G = rigidBody.position;
         Vector3 n, Ci, GCi, vi, viTan, ufi, vfi, Fvi;
@@ -111,7 +111,7 @@ public class KernerDynamics : MonoBehaviour
     {
         Vector3[] vertices = submergedMeshVertices;
         int[] triangles = submergedMeshTriangles;
-        Vector3 vG = rigidBody.velocity;
+        Vector3 vG = rigidBody.linearVelocity;
         Vector3 omegaG = rigidBody.angularVelocity;
         Vector3 G = rigidBody.position;
         Vector3 Fpd, v0, v1, v2, ni, Ci, GCi, vi, ui;

@@ -245,7 +245,7 @@ public class ShipController : MonoBehaviour
             transform.rotation = savedInitialRotation;
             if (parentRigidbody != null)
             {
-                parentRigidbody.velocity = Vector3.zero;
+                parentRigidbody.linearVelocity = Vector3.zero;
                 parentRigidbody.angularVelocity = Vector3.zero;
                 parentRigidbody.ResetInertiaTensor(); // Optional, use if we need to reset rotational velocities due to inertia changes
             }

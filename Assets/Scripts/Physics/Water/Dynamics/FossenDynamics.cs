@@ -81,7 +81,7 @@ public class FossenDynamics : MonoBehaviour
 
     private float[] getState(){
         float[] eta = state;
-        Vector3 worldVelocity = rb.velocity;
+        Vector3 worldVelocity = rb.linearVelocity;
         Vector3<FLU> localVelocity = transform.InverseTransformDirection(worldVelocity).To<FLU>();
         Vector3<FLU> localAngularVelocity = -rb.angularVelocity.To<FLU>();
 

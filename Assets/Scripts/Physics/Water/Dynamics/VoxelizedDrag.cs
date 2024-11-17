@@ -24,7 +24,7 @@ namespace Physics.Water.Dynamics
         
         public void ApplyDrag(Rigidbody rb, float area, float dragCoefficient) 
         {
-            Vector3 velocity = rb.velocity;
+            Vector3 velocity = rb.linearVelocity;
             Vector3 dragForce = CalculateDragForce(velocity, area, dragCoefficient);
             rb.AddForce(dragForce);
         }

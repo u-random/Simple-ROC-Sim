@@ -46,7 +46,7 @@ public class Odom : MonoBehaviour
             };
             msg.pose.pose.orientation = odomBody.transform.rotation.To<FLU>();
             
-            Vector3 localVelocity = transform.InverseTransformDirection(odomBody.velocity);
+            Vector3 localVelocity = transform.InverseTransformDirection(odomBody.linearVelocity);
             msg.twist.twist.linear.x = localVelocity.z;
             msg.twist.twist.linear.y = -localVelocity.x;
             msg.twist.twist.linear.z = localVelocity.y;

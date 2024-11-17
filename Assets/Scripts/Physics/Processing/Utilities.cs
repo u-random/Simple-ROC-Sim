@@ -124,7 +124,7 @@ namespace WaterInteraction
                 print("Beginning to log volume data");
                 Utils.LogDataToFile(depthLogFile,"depth","volume");
                 // Add a constant downward force 
-                GetComponent<Rigidbody>().velocity = new Vector3(0f, -0.1f, 0f);
+                GetComponent<Rigidbody>().linearVelocity = new Vector3(0f, -0.1f, 0f);
             }
         
             if (!File.Exists(timeLogFile) && logTimeData)
