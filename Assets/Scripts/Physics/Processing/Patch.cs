@@ -21,6 +21,7 @@ namespace WaterInteraction
         // Output job parameters
         NativeArray<float3> projectedPositionWorldSpaceBuffer;
         NativeArray<float3> candidatePositionBuffer;
+        NativeArray<float3> normalWSBuffer;
         NativeArray<float3> directionBuffer;
         NativeArray<int> stepCountBuffer;
         NativeArray<float> errorBuffer;
@@ -64,6 +65,7 @@ namespace WaterInteraction
             directionBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
             stepCountBuffer = new NativeArray<int>(numberOfGridPoints, Allocator.Persistent);
             errorBuffer = new NativeArray<float>(numberOfGridPoints, Allocator.Persistent);
+            normalWSBuffer = new NativeArray<float3>(numberOfGridPoints, Allocator.Persistent);
         }
         
         
@@ -89,7 +91,6 @@ namespace WaterInteraction
             }
 
             ExecuteWaterSimulationSearchJob(simData, patchVertices);
-            return;
         }
         
         
@@ -161,7 +162,8 @@ namespace WaterInteraction
                 candidateLocationWSBuffer = candidatePositionBuffer,
                 projectedPositionWSBuffer = projectedPositionWorldSpaceBuffer,
                 directionBuffer = directionBuffer,
-                stepCountBuffer = stepCountBuffer
+                stepCountBuffer = stepCountBuffer,
+                normalWSBuffer = normalWSBuffer,
             };
 
             // Schedule the job with one Execute per index in the results array and only 1 item per processing batch
@@ -267,6 +269,7 @@ namespace WaterInteraction
             directionBuffer.Dispose();
             stepCountBuffer.Dispose();
             errorBuffer.Dispose();
+            normalWSBuffer.Dispose();
         }
     }
 }
