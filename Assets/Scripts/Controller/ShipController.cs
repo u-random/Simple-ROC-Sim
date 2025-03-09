@@ -50,7 +50,7 @@ public class ShipController : MonoBehaviour
     private float currentThrust = 0.0f;
     private Quaternion savedInitialRotation;
     
-    private float engineRotationLimit  = 25;
+    private float engineRotationLimit  = 170;
     private Vector3 startDirection;
     
     struct EnginePropellerPair
@@ -163,7 +163,7 @@ public class ShipController : MonoBehaviour
         float finalForce = force * forceMultiplier;
         currentThrust = finalForce = Mathf.Clamp(finalForce, forceClamp.x, forceClamp.y);
         
-        Vector3 direction = pair.EngineJoint.transform.forward; 
+        Vector3 direction = pair.EngineJoint.transform.up; 
         Vector3 position = pair.PropellerJoint.transform.position;
         
         parentRigidbody.AddForceAtPosition(direction * finalForce, position);
@@ -192,11 +192,11 @@ public class ShipController : MonoBehaviour
     private (Quaternion, Transform, float) GetDesiredRotation(float rotationValue, Transform joint) 
     {
         float desiredRotation = - rotationValue * rotationMultiplier;
-        float newRotation = joint.localEulerAngles.y + desiredRotation;
+        float newRotation = joint.localEulerAngles.z + desiredRotation;
         newRotation = NormalizeAngle(newRotation);
         if (newRotation > 300) newRotation -= 360; // To avoid snapping at 0/360 degrees
         currentAngle = Mathf.Clamp(newRotation, -engineRotationLimit, engineRotationLimit);
-        Quaternion targetRotation = Quaternion.Euler(0, currentAngle, 0);
+        Quaternion targetRotation = Quaternion.Euler(0, 0, currentAngle);
         return (targetRotation, joint, desiredRotation);
     }
     
@@ -205,7 +205,7 @@ public class ShipController : MonoBehaviour
     private void RotatePropeller(Transform joint)
     {
         float rotationThisFrame = currentThrust * rotationMultiplier * Time.deltaTime;
-        rotationThisFrame = Mathf.Clamp(rotationThisFrame, -1000f, 5000f);
+        rotationThisFrame = Mathf.Clamp(rotationThisFrame, -1000f, 3000f);
         
         Quaternion currentRotation = joint.localRotation;
         Quaternion newRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, currentRotation.eulerAngles.z + rotationThisFrame);
