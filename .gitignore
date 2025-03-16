@@ -25,6 +25,9 @@ UserSettings/
 Assets/Models/Otter/OtterUnity.dae
 Assets/Models/Otter/OtterUnity.dae.meta
 git-filter-repo
+# Ignore ferry model, too big for Github
+Assets/Models/Ferry/
+
 
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
