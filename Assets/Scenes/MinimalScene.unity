@@ -4028,7 +4028,7 @@ GameObject:
   - component: {fileID: 1345916310}
   - component: {fileID: 1345916309}
   m_Layer: 0
-  m_Name: Camera (1)
+  m_Name: ConningCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6853,7 +6853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1996981856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7492,6 +7492,8 @@ GameObject:
   - component: {fileID: 1037568936}
   - component: {fileID: 1037568935}
   - component: {fileID: 1037568940}
+  - component: {fileID: 919132148984002293}
+  - component: {fileID: 919132148984002294}
   m_Layer: 0
   m_Name: FerryWPhysics
   m_TagString: Untagged
@@ -7499,6 +7501,43 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148984002293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148984002292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbaac542df90446cbbcb0862a30fc11a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraStreamingManager: {fileID: 919132148984002294}
+  port: 3000
+  telemetryUpdateRate: 0.1
+  mapCenterCoordinates:
+  - 10.570455
+  - 59.425565
+  mapSizeKm: 10
+  unityUnitsToKm: 0.1
+--- !u!114 &919132148984002294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148984002292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ca1db3412640f083d0c64e0d03c0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 1345916311}
+  streamWidth: 1280
+  streamHeight: 540
+  framesPerSecond: 15
+  jpegQuality: 75
 --- !u!1 &1088678603977891906
 GameObject:
   m_ObjectHideFlags: 0

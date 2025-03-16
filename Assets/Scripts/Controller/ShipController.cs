@@ -14,6 +14,10 @@ using Vector3 = UnityEngine.Vector3;
 // TODO: More realistic propeller rotation
 // TODO: Add a swirly water effect behind the propeller + white lines rotating around the propeller
 
+// TODO: Edit control mode to engine separate
+// Have the speed be increased/decreased in 10% or 5% increments
+// Multiply by a force
+// Separate engine rotation, increments of 15 degrees.
 
 public class ShipController : MonoBehaviour
 {
