@@ -60,6 +60,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -179,6 +180,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -296,6 +298,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -413,6 +416,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -486,7 +490,7 @@ Rigidbody:
   m_GameObject: {fileID: 4041820464639420609}
   serializedVersion: 4
   m_Mass: 350
-  m_Drag: 0
+  m_Drag: 0.2
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: -0.3, z: 0}
   m_InertiaTensor: {x: 393, y: 446, z: 120}
@@ -538,15 +542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0e152a37064894bd0d24c9527e4b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSurface: {fileID: 0}
+  waterSurface: {fileID: 0}
   simplifiedMesh: {fileID: 338496663162566792, guid: 592669f32c32343778410d0e1e7f7f8a,
     type: 3}
   patchSize: 10
   patchResolution: 4
   drawPatch: 1
   drawSubmerged: 0
-  logData: 0
-  displacedVolume: 0
 --- !u!114 &2344897520733462606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -560,6 +562,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buoyancyForceActive: 1
+  showDebugVisuals: 1
+  buoyancyForceColor: {r: 0, g: 0, b: 1, a: 1}
+  buoyancyCenterColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  forceVectorScale: 0.001
+  centerMarkerSize: 0.5
 --- !u!114 &8563668998393776635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,15 +605,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4994672185f34700a873a887557da8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceClamp: {x: -500, y: 2750}
   forceMultiplier: 3000
   rotationMultiplier: 1
-  hasRudder: 1
   holdingRudder: 0
-  forceText: {fileID: 0}
-  rotationText: {fileID: 0}
-  currentSpinText: {fileID: 0}
-  currentAngleText: {fileID: 0}
-  currentThrustText: {fileID: 0}
+  debug: 0
+  UI:
+    forceText: {fileID: 0}
+    rotationText: {fileID: 0}
+    currentSpinText: {fileID: 0}
+    currentAngleText: {fileID: 0}
+    currentThrustText: {fileID: 0}
 --- !u!1 &4120251606732997454
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +745,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -821,6 +831,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -972,6 +983,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -1123,6 +1135,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -1208,6 +1221,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:

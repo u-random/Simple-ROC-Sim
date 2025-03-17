@@ -114,6 +114,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -233,6 +234,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -436,6 +438,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -577,12 +580,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineJoint: {fileID: 4925392913000111281}
-  topicName: front_left_thruster
   propellerJoint: {fileID: 5911429666269020810}
+  topicName: front_left_thruster
   angleK: 0.4
   thrustK: 1
   maxThrust: 250
   maxRpmVisual: 500
+  rigidBody: {fileID: 0}
+  debug: 0
 --- !u!114 &9055344849841007784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,12 +601,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineJoint: {fileID: 6487382693694650120}
-  topicName: front_right_thruster
   propellerJoint: {fileID: 7403464690217032502}
+  topicName: front_right_thruster
   angleK: 0.4
   thrustK: 1
   maxThrust: 250
   maxRpmVisual: 500
+  rigidBody: {fileID: 0}
+  debug: 0
 --- !u!114 &3757137434701589486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,12 +622,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineJoint: {fileID: 2214722099867428006}
-  topicName: rear_left_thruster
   propellerJoint: {fileID: 6687213394705583959}
+  topicName: rear_left_thruster
   angleK: 0.4
   thrustK: 1
   maxThrust: 250
   maxRpmVisual: 500
+  rigidBody: {fileID: 0}
+  debug: 0
 --- !u!114 &1358507591940478826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,12 +643,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   engineJoint: {fileID: 7952322516605259358}
-  topicName: rear_right_thruster
   propellerJoint: {fileID: 6490864095461255724}
+  topicName: rear_right_thruster
   angleK: 0.4
   thrustK: 1
   maxThrust: 250
   maxRpmVisual: 500
+  rigidBody: {fileID: 0}
+  debug: 0
 --- !u!1 &2890251079267502793
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +668,7 @@ GameObject:
   - component: {fileID: 6410587483100875244}
   - component: {fileID: 8847020379938146771}
   m_Layer: 0
-  m_Name: WamVPrefab
+  m_Name: WamV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,10 +747,11 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3840f0eb38ba1be4e8d200af918de165, type: 2}
+  - {fileID: 964257332344130653, guid: 68efa1f7a6c73be47ad2b3e45b01859a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -795,15 +807,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0e152a37064894bd0d24c9527e4b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSurface: {fileID: 0}
+  waterSurface: {fileID: 0}
   simplifiedMesh: {fileID: 801464810768558231, guid: 1637a0c08eefae04caa4cb053eef35f5,
     type: 3}
   patchSize: 10
   patchResolution: 10
   drawPatch: 0
   drawSubmerged: 0
-  logVolumeData: 0
-  logTimeData: 0
 --- !u!114 &6410587483100875244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +827,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buoyancyForceActive: 1
+  showDebugVisuals: 1
+  buoyancyForceColor: {r: 0, g: 0, b: 1, a: 1}
+  buoyancyCenterColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  forceVectorScale: 0.001
+  centerMarkerSize: 0.5
 --- !u!114 &8847020379938146771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,14 +847,14 @@ MonoBehaviour:
   forceClamp: {x: -500, y: 2750}
   forceMultiplier: 100
   rotationMultiplier: 10
-  hasRudder: 1
   holdingRudder: 0
   debug: 0
-  forceText: {fileID: 0}
-  rotationText: {fileID: 0}
-  currentSpinText: {fileID: 0}
-  currentAngleText: {fileID: 0}
-  currentThrustText: {fileID: 0}
+  UI:
+    forceText: {fileID: 0}
+    rotationText: {fileID: 0}
+    currentSpinText: {fileID: 0}
+    currentAngleText: {fileID: 0}
+    currentThrustText: {fileID: 0}
 --- !u!1 &3225753322615361664
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,7 +969,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topicName: odometry
-  rigidBody: {fileID: 5851860746337210165}
   Hz: 50
 --- !u!1 &4925392913000111281
 GameObject:
@@ -1247,6 +1261,13 @@ MonoBehaviour:
   deepLearningSuperSamplingUseCustomAttributes: 0
   deepLearningSuperSamplingUseOptimalSettings: 1
   deepLearningSuperSamplingSharpening: 0
+  allowFidelityFX2SuperResolution: 1
+  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
+  fidelityFX2SuperResolutionQuality: 0
+  fidelityFX2SuperResolutionUseCustomAttributes: 0
+  fidelityFX2SuperResolutionUseOptimalSettings: 1
+  fidelityFX2SuperResolutionEnableSharpening: 0
+  fidelityFX2SuperResolutionSharpening: 0
   fsrOverrideSharpness: 0
   fsrSharpness: 0.92
   exposureTarget: {fileID: 0}
@@ -1423,6 +1444,7 @@ MonoBehaviour:
   normalsRenderTexture: {fileID: 8400000, guid: 6b1cfb535279b0449ac0e5e1a263a284,
     type: 2}
   outputRenderTexture: {fileID: 8400000, guid: 53de5ec294fbae041ad325683dfe6bca, type: 2}
+  drawFrustum: 0
   flatNoise: 0
   depthAngleNoiseGain: 0
   K1: 0
@@ -1446,6 +1468,7 @@ MonoBehaviour:
   inputRenderTexture: {fileID: 8400000, guid: 9f5e8a649754a6243baf61f0c90b3c8c, type: 2}
   normalsRenderTexture: {fileID: 0}
   outputRenderTexture: {fileID: 8400000, guid: edcd97a8adf9d9a4a9bae5ff41fa20c7, type: 2}
+  drawFrustum: 0
   flatNoise: 0
   depthAngleNoiseGain: 0
   K1: 0
@@ -1513,6 +1536,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -1630,6 +1654,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -1715,6 +1740,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -1960,8 +1986,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &1225973455393703607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1977,14 +2007,14 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 5000000
   m_EnableSpotReflector: 1
+  m_LightUnit: 0
   m_LuxAtDistance: 1
+  m_Intensity: 5000000
   m_InnerSpotPercent: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 0
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
@@ -2004,6 +2034,7 @@ MonoBehaviour:
   m_IESPoint: {fileID: 0}
   m_IESSpot: {fileID: 0}
   m_IncludeForRayTracing: 1
+  m_IncludeForPathTracing: 1
   m_AreaLightShadowCone: 120
   m_UseScreenSpaceShadows: 0
   m_InteractsWithSky: 1
@@ -2195,6 +2226,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
@@ -2437,6 +2469,13 @@ MonoBehaviour:
   deepLearningSuperSamplingUseCustomAttributes: 0
   deepLearningSuperSamplingUseOptimalSettings: 1
   deepLearningSuperSamplingSharpening: 0
+  allowFidelityFX2SuperResolution: 1
+  fidelityFX2SuperResolutionUseCustomQualitySettings: 0
+  fidelityFX2SuperResolutionQuality: 0
+  fidelityFX2SuperResolutionUseCustomAttributes: 0
+  fidelityFX2SuperResolutionUseOptimalSettings: 1
+  fidelityFX2SuperResolutionEnableSharpening: 0
+  fidelityFX2SuperResolutionSharpening: 0
   fsrOverrideSharpness: 0
   fsrSharpness: 0.92
   exposureTarget: {fileID: 0}
@@ -2569,6 +2608,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
