@@ -52,6 +52,7 @@ public class TelemetryProvider
     private readonly Rigidbody shipRigidbody;
     private readonly int shipId;
     private readonly string shipName;
+    private Transform trueForwardTransform;
 
     // Constructor with dependencies
     public TelemetryProvider(Transform transform, Rigidbody rigidbody, string name = null)
@@ -60,6 +61,8 @@ public class TelemetryProvider
         this.shipRigidbody = rigidbody;
         this.shipId = transform.gameObject.GetInstanceID();
         this.shipName = string.IsNullOrEmpty(name) ? transform.gameObject.name : name;
+
+        trueForwardTransform = transform.Find("TrueForward");
     }
 
     // Generate telemetry data based on the current state of the ship
@@ -67,12 +70,15 @@ public class TelemetryProvider
     {
         // Convert Unity position to geographic coordinates
         Vector3 position = shipTransform.position;
-        double[] geoCoords = CoordinateConverter.UnityToGeo(position);
+        double[] geoCoords = TelemetryUtilities.UnityToGeo(position);
         double longitude = geoCoords[0];
         double latitude = geoCoords[1];
 
-        float heading = shipTransform.eulerAngles.y;
-        float speedKnots = shipRigidbody != null ? CoordinateConverter.UnitySpeedToKnots(shipRigidbody.linearVelocity.magnitude) : 0;
+        float heading = TelemetryUtilities.GetShipHeadingWithMarker(shipTransform, trueForwardTransform);
+        Vector3 horizontalVelocity = shipRigidbody != null ?
+            new Vector3(shipRigidbody.linearVelocity.x, 0, shipRigidbody.linearVelocity.z) : Vector3.zero;
+        float speedKnots = shipRigidbody != null ?
+            TelemetryUtilities.UnitySpeedToKnots(horizontalVelocity.magnitude) : 0;
 
         return new TelemetryData
         {
