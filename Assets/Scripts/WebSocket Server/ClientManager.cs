@@ -182,6 +182,7 @@ public class ClientManager
         try
         {
             string json = JsonUtility.ToJson(data);
+            //Debug.Log($"Broadcasting JSON, length: {json?.Length ?? 0}");
             serviceHost.Sessions.Broadcast(json);
 
             // Update last activity for all clients

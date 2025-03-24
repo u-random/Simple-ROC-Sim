@@ -167,7 +167,7 @@ public class ShipController : MonoBehaviour
         float finalForce = force * forceMultiplier;
         currentThrust = finalForce = Mathf.Clamp(finalForce, forceClamp.x, forceClamp.y);
         
-        Vector3 direction = pair.EngineJoint.transform.up; 
+        Vector3 direction = pair.EngineJoint.transform.forward;  // EDIT THIS
         Vector3 position = pair.PropellerJoint.transform.position;
         
         parentRigidbody.AddForceAtPosition(direction * finalForce, position);
@@ -196,11 +196,11 @@ public class ShipController : MonoBehaviour
     private (Quaternion, Transform, float) GetDesiredRotation(float rotationValue, Transform joint) 
     {
         float desiredRotation = - rotationValue * rotationMultiplier;
-        float newRotation = joint.localEulerAngles.z + desiredRotation;
+        float newRotation = joint.localEulerAngles.y + desiredRotation;
         newRotation = NormalizeAngle(newRotation);
         if (newRotation > 300) newRotation -= 360; // To avoid snapping at 0/360 degrees
         currentAngle = Mathf.Clamp(newRotation, -engineRotationLimit, engineRotationLimit);
-        Quaternion targetRotation = Quaternion.Euler(0, 0, currentAngle);
+        Quaternion targetRotation = Quaternion.Euler(0, currentAngle, 0);
         return (targetRotation, joint, desiredRotation);
     }
     

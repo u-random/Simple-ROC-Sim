@@ -8,6 +8,7 @@ public class RegisterMessageHandler : IMessageHandler {
         Debug.Log($"Registering client {clientId} as {message.role}");
         responder.RegisterClient(clientId);
 
+        // TODO: No client side usage
         responder.SendToClient(clientId, new {
             type = "registration_confirmed",
             clientId = clientId
@@ -21,8 +22,9 @@ public class ControlMessageHandler : IMessageHandler {
     public void HandleMessage(SignalingMessage message, string clientId, IMessageResponder responder) {
         Debug.Log($"Processing control command for ship {message.shipId}");
 
-        // Process control command
+        ControlEventSystem.PublishControlCommand(message.shipId, message.command);
 
+        // TODO: No client side usage
         responder.SendToClient(clientId, new {
             type = "control_acknowledged",
             shipId = message.shipId
