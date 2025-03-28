@@ -87,8 +87,11 @@ public class CameraManager
         }
     }
 
+    // TODO: Migrate this system to binary
     private void CaptureFrame()
     {
+        Debug.Log($"CaptureFrame called: isStreaming={isStreaming}, camera={targetCamera != null}, RT={renderTexture != null}");
+
         if (!isStreaming || targetCamera == null || renderTexture == null || frameTexture == null)
             return;
 
@@ -108,6 +111,7 @@ public class CameraManager
             // Cache the latest frame
             frameCache[currentShipId] = base64Frame;
 
+            Debug.Log($"Frame captured: shipId={currentShipId}, length={base64Frame.Length}, first 20 chars: {base64Frame.Substring(0, 20)}");
             // Notify listeners
             OnCompressedFrameReady?.Invoke(currentShipId, base64Frame);
         }

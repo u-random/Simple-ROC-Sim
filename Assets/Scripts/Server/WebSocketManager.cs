@@ -56,6 +56,7 @@ public class WebSocketManager : MonoBehaviour, IMessageResponder
         // Update camera manager
         cameraManager.Update();
 
+        // TODO: This is the limiting factor for the frame rate
         // Send telemetry at specified rate
         if (Time.time - lastTelemetryTime > telemetryUpdateRate)
         {
@@ -186,6 +187,7 @@ public class WebSocketManager : MonoBehaviour, IMessageResponder
         // Generate telemetry data
         var telemetryData = telemetryProvider.GenerateTelemetry();
 
+        // TODO: Remove camera feed from telemetry message
         // Add camera feed if available
         int shipId = telemetryData.id;
         string cameraFrame = cameraManager.GetLatestFrame(shipId);
