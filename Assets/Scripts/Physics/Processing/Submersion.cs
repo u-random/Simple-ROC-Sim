@@ -1,11 +1,7 @@
 using UnityEngine.Rendering.HighDefinition;
-using UnityEngine.Serialization;
-using System.Diagnostics;
 using Unity.Collections;
 using WaterInteraction;
 using UnityEngine;
-using System.IO;
-using PlasticPipe.PlasticProtocol.Client;
 
 
 public class Submersion : MonoBehaviour
