@@ -205,6 +205,17 @@ public class ClientManager
     }
 
     /// <summary>
+    /// Update a client's activity timestamp to prevent timeouts
+    /// </summary>
+    public void UpdateClientActivity(string clientId)
+    {
+        if (clients.TryGetValue(clientId, out var client))
+        {
+            client.LastActivity = DateTime.UtcNow;
+        }
+    }
+
+    /// <summary>
     /// Check client timeouts and manage reconnections
     /// </summary>
     public void UpdateClientStates()
