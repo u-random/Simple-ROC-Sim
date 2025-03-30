@@ -74,6 +74,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "RudderAlt",
+                    "type": "Value",
+                    "id": "2f7df281-da77-40de-ae2b-e5bcf2623b76",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "PositivePropulsion",
                     "type": "Value",
                     "id": "8d7f47e7-10f1-40b0-a2da-a744bb499b48",
@@ -83,9 +92,27 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "PositivePropulsionAlt",
+                    "type": "Value",
+                    "id": "c2241b4f-4884-4e0b-96c9-345c922864e4",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "NegativePropulsion",
                     "type": "Value",
                     "id": "73995f8a-9e2a-4a5f-8a9f-ff6376f91027",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "NegativePropulsionAlt",
+                    "type": "Value",
+                    "id": "7b08415a-f7c3-45df-847b-f4e43137e04f",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -139,6 +166,50 @@
                 },
                 {
                     "name": "",
+                    "id": "292e2edc-e4bb-4e86-a1ea-53e48c0f5da6",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RudderAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Arrows",
+                    "id": "c6a38f23-0fb4-40da-a2fb-a81dc13412c6",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RudderAlt",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "f03ba017-01a9-4837-a6f7-950d6967ba3d",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RudderAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "afbbaa7a-ed72-4a01-ad22-1b626651b631",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RudderAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
                     "id": "1dc57be3-cbbe-47a5-829e-9db8c0e096d2",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -161,6 +232,28 @@
                 },
                 {
                     "name": "",
+                    "id": "80e7abd3-8630-45cd-af06-4bf7fb40d314",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PositivePropulsionAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df8d9005-cd7b-4040-b355-7124e436f030",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PositivePropulsionAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2542ccd0-da5b-4bb1-af01-ea15bb2443b0",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -178,6 +271,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "NegativePropulsion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "35488d92-c4fd-4714-8ceb-37d17b0e0e2c",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NegativePropulsionAlt",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af13bfaa-1480-46a6-8f37-b95060c033a8",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NegativePropulsionAlt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
