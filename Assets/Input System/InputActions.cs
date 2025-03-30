@@ -392,7 +392,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""name"": ""ResetButton"",
                     ""type"": ""Button"",
                     ""id"": ""9b7390df-3c7d-4e11-a343-ac2ba17f089b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9b52516-13d6-4b73-88e1-b5165e6b2999"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -418,6 +427,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ResetButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ce6e6896-d504-449a-a147-1d910b435ed5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbbb847d-7a2c-427f-a035-c36c8eab9509"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -475,6 +506,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Debug
         m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
         m_Debug_ResetButton = m_Debug.FindAction("ResetButton", throwIfNotFound: true);
+        m_Debug_MenuButton = m_Debug.FindAction("MenuButton", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -816,6 +848,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Debug;
     private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
     private readonly InputAction m_Debug_ResetButton;
+    private readonly InputAction m_Debug_MenuButton;
     /// <summary>
     /// Provides access to input actions defined in input action map "Debug".
     /// </summary>
@@ -831,6 +864,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Debug/ResetButton".
         /// </summary>
         public InputAction @ResetButton => m_Wrapper.m_Debug_ResetButton;
+        /// <summary>
+        /// Provides access to the underlying input action "Debug/MenuButton".
+        /// </summary>
+        public InputAction @MenuButton => m_Wrapper.m_Debug_MenuButton;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -860,6 +897,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ResetButton.started += instance.OnResetButton;
             @ResetButton.performed += instance.OnResetButton;
             @ResetButton.canceled += instance.OnResetButton;
+            @MenuButton.started += instance.OnMenuButton;
+            @MenuButton.performed += instance.OnMenuButton;
+            @MenuButton.canceled += instance.OnMenuButton;
         }
 
         /// <summary>
@@ -874,6 +914,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ResetButton.started -= instance.OnResetButton;
             @ResetButton.performed -= instance.OnResetButton;
             @ResetButton.canceled -= instance.OnResetButton;
+            @MenuButton.started -= instance.OnMenuButton;
+            @MenuButton.performed -= instance.OnMenuButton;
+            @MenuButton.canceled -= instance.OnMenuButton;
         }
 
         /// <summary>
@@ -1032,5 +1075,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnResetButton(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MenuButton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMenuButton(InputAction.CallbackContext context);
     }
 }
