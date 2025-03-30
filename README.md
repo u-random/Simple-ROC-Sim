@@ -7,10 +7,11 @@ This is a further refined version on the previous work edvartGB and I did on the
 - Built upon the previously implemented Unity simulator platform 
 - Migrated to Unity 6
 - New WebSocket server system providing:
-  - Camera streaming in the form of base64 JPEG
+  - Camera streaming in the form of binary or base64 JPEG
   - Ship telemetry streaming with various parameters
   - Coming: Reception and execution of control signals from Remote Operation Center web-app
-- Coming: New Ship Control script for dual 360 degree engine setup
+  - Coming: Multiple ships and objects in telemetry messages
+- New Ship Control script for dual 360 degree engine setup
 
 ## Original Upstream Features
 - ROS 2 integration with the [Unity ROS-TCP-Connector](https://github.com/Unity-Technologies/ROS-TCP-Connector)
