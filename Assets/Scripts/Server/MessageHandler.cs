@@ -6,11 +6,34 @@ using UnityEngine;
 [Serializable]
 public class SignalingMessage
 {
+    // Message metadata
     public string type;
-    public string shipId;
+    public string shipID;
     public string role;
-    public string clientId; // UNUSED
-    public object command;  // UNUSED
+    public string clientId;
+
+    // Control properties (flattened from the command object)
+    public float throttle;
+    public float rudder;
+    public bool engineOn;
+
+    // Engine group controls
+    public float mainThrottle;
+    public float mainRudder;
+    public float bowThrottle;
+    public float bowRudder;
+    
+    // Camera control
+    public float cameraRotation;
+
+    // Control mode
+    public string engineMode = "unified";
+    
+    // ROC control mode toggle (true = ROC controls ship, false = Unity controls ship)
+    public bool controlModeActive;
+    
+    // Legacy field - no longer used with flattened structure
+    public object command;
 }
 
 public interface IMessageHandler
