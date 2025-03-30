@@ -19,7 +19,7 @@ public class CameraManager
     private int jpegQuality = 75;
 
     // Event to notify when a new frame is ready
-    public event Action<int, string> OnCompressedFrameReady;
+    public event Action<int, byte[]> OnCompressedFrameReady;
 
     public CameraManager(Camera camera = null, int width = 1280, int height = 540, int fps = 15, int quality = 75)
     {
@@ -31,6 +31,13 @@ public class CameraManager
 
         Initialize();
     }
+    
+    // Accessors for adaptive streaming
+    public int GetJpegQuality() { return jpegQuality; }
+    public void SetJpegQuality(int quality) { jpegQuality = Mathf.Clamp(quality, 1, 100); }
+    
+    public float GetCaptureInterval() { return captureInterval; }
+    public void SetCaptureInterval(float interval) { captureInterval = Mathf.Max(0.033f, interval); } // Minimum 30fps
 
     private void Initialize()
     {
@@ -87,10 +94,10 @@ public class CameraManager
         }
     }
 
-    // TODO: Migrate this system to binary
+    // Migrated to binary data
     private void CaptureFrame()
     {
-        Debug.Log($"CaptureFrame called: isStreaming={isStreaming}, camera={targetCamera != null}, RT={renderTexture != null}");
+        //Debug.Log($"CaptureFrame called: isStreaming={isStreaming}, camera={targetCamera != null}, RT={renderTexture != null}");
 
         if (!isStreaming || targetCamera == null || renderTexture == null || frameTexture == null)
             return;
@@ -104,16 +111,17 @@ public class CameraManager
             frameTexture.Apply();
             RenderTexture.active = null;
 
-            // Convert to JPEG and base64
+            // Convert to JPEG binary data only
             byte[] jpegBytes = frameTexture.EncodeToJPG(jpegQuality);
-            string base64Frame = Convert.ToBase64String(jpegBytes);
+            
+            // For caching/debug purposes, still maintain base64 version
+            //string base64Frame = Convert.ToBase64String(jpegBytes);
+            //frameCache[currentShipId] = base64Frame;
 
-            // Cache the latest frame
-            frameCache[currentShipId] = base64Frame;
-
-            Debug.Log($"Frame captured: shipId={currentShipId}, length={base64Frame.Length}, first 20 chars: {base64Frame.Substring(0, 20)}");
-            // Notify listeners
-            OnCompressedFrameReady?.Invoke(currentShipId, base64Frame);
+            //Debug.Log($"Frame captured: shipId={currentShipId}, binary length={jpegBytes.Length}bytes");
+            Debug.Log($"Frame captured for shipId={currentShipId}");
+            // Notify listeners with binary data instead of base64
+            OnCompressedFrameReady?.Invoke(currentShipId, jpegBytes);
         }
         catch (Exception ex)
         {
