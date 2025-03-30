@@ -200,7 +200,7 @@ public class WebSocketManager : MonoBehaviour, IMessageResponder
         clientManager.BroadcastToAll(telemetryData);
     }
 
-    private void HandleCameraFrame(int shipId, string base64Frame)
+    private void HandleCameraFrame(int shipId, byte[] frameData)
     {
         // This method is called when a new camera frame is ready
         // We don't need to do anything here since GetLatestFrame will retrieve
