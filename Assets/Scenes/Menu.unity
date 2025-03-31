@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xA9 MIT License 2025 edvartGB, u-random, \nThe University of South-Eastern
+  m_text: "\xA9 MIT License 2025 edvartGB, u-random\nThe University of South-Eastern
     Norway Research Group on Autonomy\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e308c273488bf41dbb03fb6e49726ca3, type: 2}
@@ -627,9 +627,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Control the ship with WASD keys, alternatively Gamepad left joystick.\nKeyboard:\nW
     : Forward\tS : Backward\tA : Left\t\tD : Right\nGamepad:\nRight trigger : Forward\t\tLeft-Joystick
-    left   : Left\nLeft trigger\t  : Backward\tLeft-Joystick right : Right\n\nThe
-    program captures the mouse to rotate camera, and has a follow mode applied, so
-    camera will return after no input. Alternatively, use Gamepad right joystick."
+    left  : Left\nLeft trigger  : Backward\t\tLeft-Joystick right : Right\n\nThe
+    program captures the mouse to rotate the camera, and will follow the ship by
+    default. Alternatively, use Gamepad right joystick to control camera. We accumulate
+    Forward/Backward input, so holding those inputs will scale max thrust from 0
+    to 1.0/-1.0. The rudder is currently only applied when holding input, for a more
+    \"game-like\" and intuitive experience."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e308c273488bf41dbb03fb6e49726ca3, type: 2}
   m_sharedMaterial: {fileID: -3700561076212267310, guid: e308c273488bf41dbb03fb6e49726ca3,
