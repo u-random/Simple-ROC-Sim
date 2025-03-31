@@ -11,6 +11,7 @@ public class CameraManager
     private float lastCaptureTime = 0;
     private int currentShipId = 0;
     private Dictionary<int, string> frameCache = new Dictionary<int, string>();
+    private HashSet<string> connectedClientIds = new HashSet<string>(); // Track connected clients
 
     // Configuration
     private int streamWidth = 1280;
@@ -151,5 +152,42 @@ public class CameraManager
 
         frameTexture = null;
         frameCache.Clear();
+        connectedClientIds.Clear();
+    }
+    
+    // Add a client that requested this camera stream
+    public void AddClient(string clientId)
+    {
+        if (!string.IsNullOrEmpty(clientId))
+        {
+            connectedClientIds.Add(clientId);
+            
+            // If we have clients and weren't streaming, start streaming
+            if (connectedClientIds.Count > 0 && !isStreaming)
+            {
+                StartStreaming(currentShipId);
+            }
+        }
+    }
+    
+    // Remove a client that disconnected
+    public void RemoveClient(string clientId)
+    {
+        if (!string.IsNullOrEmpty(clientId))
+        {
+            connectedClientIds.Remove(clientId);
+            
+            // If no more clients are connected, stop streaming
+            if (connectedClientIds.Count == 0 && isStreaming)
+            {
+                StopStreaming();
+            }
+        }
+    }
+    
+    // Check if there are any clients for this camera
+    public bool HasClients()
+    {
+        return connectedClientIds.Count > 0;
     }
 }

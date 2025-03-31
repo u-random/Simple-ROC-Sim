@@ -32,6 +32,13 @@ public class SignalingMessage
     // ROC control mode toggle (true = ROC controls ship, false = Unity controls ship)
     public bool controlModeActive;
     
+    // Camera request properties
+    public bool enable; // True to enable camera for ship, false to disable
+    
+    // Heartbeat/ping properties
+    public long timestamp; // For heartbeat/ping messages
+    public long originalTimestamp; // Used in heartbeat responses
+    
     // Legacy field - no longer used with flattened structure
     public object command;
 }
@@ -66,6 +73,9 @@ public class MessageProcessor
         // Classes from MessageHandlerSpecific.cs
         RegisterHandler(new RegisterMessageHandler());
         RegisterHandler(new ControlMessageHandler());
+        RegisterHandler(new CameraRequestMessageHandler());
+        RegisterHandler(new HeartbeatResponseHandler());
+        RegisterHandler(new PingMessageHandler());
     }
 
     public void RegisterHandler(IMessageHandler handler)
@@ -77,8 +87,24 @@ public class MessageProcessor
     {
         try
         {
+            // Check for null or empty messages
+            if (string.IsNullOrEmpty(message) || message.Trim().Length == 0)
+            {
+                Debug.LogWarning("Received empty message from client");
+                return false;
+            }
+            
+            // Try to parse the message using JsonUtility
             var signalMessage = JsonUtility.FromJson<SignalingMessage>(message);
+            
+            // Check if the message type is null
+            if (string.IsNullOrEmpty(signalMessage.type))
+            {
+                Debug.LogWarning($"Received message with no type: {message}");
+                return false;
+            }
 
+            // Find a handler for this message type
             foreach (var handler in handlers)
             {
                 if (handler.CanHandle(signalMessage.type))
@@ -93,7 +119,7 @@ public class MessageProcessor
         }
         catch (Exception ex)
         {
-            Debug.LogError($"Error processing message: {ex.Message}");
+            Debug.LogError($"Error processing message: {ex.Message}\nMessage content: {message}");
             return false;
         }
     }

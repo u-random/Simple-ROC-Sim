@@ -43,6 +43,27 @@ public abstract class BaseSocketServer : MonoBehaviour, IMessageResponder
     {
         ProcessMessageQueue();
         SendData();
+        
+        // Safety check for null clientManager
+        if (clientManager == null)
+        {
+            Debug.LogError($"{GetType().Name}: clientManager is null in Update! This indicates a initialization problem.");
+            
+            // Try to create a new clientManager if serviceHost is valid
+            if (serviceHost != null)
+            {
+                Debug.Log($"{GetType().Name}: Attempting to recreate clientManager...");
+                clientManager = new ClientManager(serviceHost);
+            }
+            else
+            {
+                Debug.LogError($"{GetType().Name}: Cannot recreate clientManager - serviceHost is also null!");
+            }
+            
+            return;
+        }
+        
+        // Update client states if clientManager is valid
         clientManager.UpdateClientStates();
     }
 
