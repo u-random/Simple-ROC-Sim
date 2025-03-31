@@ -340,7 +340,11 @@ public class ShipController2 : MonoBehaviour
     /// Updated to use a variable axis
     private void RotatePropeller(Transform joint)
     {
-        if (Math.Abs(CurrentThrottle + CurrentThrottle2) <= 0.03f) return; // Quick return if insignificant input
+        if (Math.Abs(CurrentThrottle + CurrentThrottle2) <= 0.03f)
+        {
+            CurrentSpin = CurrentSpin2 = 0f;
+            return; // Quick return if insignificant input
+        }
 
         bool isBowThruster = joint.parent.name.Contains("Bow");
         bool separateThrust = InternalControlState.engineMode == "group";
@@ -608,6 +612,8 @@ public class ShipController2 : MonoBehaviour
     #endregion
 
 
+    #region Other Monobehaviour Functions
+
     private void OnEnable()
     {
         if (InputActions != null) InputActions.Enable();
@@ -648,4 +654,6 @@ public class ShipController2 : MonoBehaviour
             //Debug.DrawLine(engineJoint.position, engineJoint.position + currentDirection, Color.magenta);
         }
     }
+
+    #endregion
 }
